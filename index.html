@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            margin: 0;
+            min-width: 250px;
+        }
+
+        /* Include the padding and border in an element's total width and height */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Remove margins and padding from the list */
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the list items */
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+        }
+
+        /* Set all odd list items to a different color (zebra-stripes) */
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* Darker background-color on hover */
+        ul li:hover {
+            background: #ddd;
+        }
+
+        #createBookmarklet {
+            margin: 10px 90px ;
+        }
+
+        #myBookmarkletName {
+            width: 300px;
+        }
+
+        #myBookmarkletCode {
+            margin-top: 10px;
+            width: 300px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div id="header">
+    <h2>Place bookmarklet code here:</h2>
+        <p>bookmarklet Name</p>
+        <input type="text" id="myBookmarkletName" name="bookmarklet" maxlength="3000" rows="10" cols="50">
+        <br>
+        <p>Place bookmarklet code here:</p>
+        <textarea type="text" id="myBookmarkletCode" name="bookmarklet" maxlength="3000" rows="10" cols="50"></textarea>
+        <br>
+        <button id="createBookmarklet" >
+            Create bookmarklet
+        </button>
+        <ul id="bookmarkletList"></ul>
+
+</div>
+
+
+<script>
+
+    let ul = document.getElementById('bookmarkletList');
+
+    ul.addEventListener('click', function(e) {
+        if (e.target.tagName === 'LI'){
+            alert(e.target.innerHTML);
+        }
+    });
+
+    document.getElementById('createBookmarklet').addEventListener("click", createBookmarklet);
+
+    function createBookmarklet() {
+            let li = document.createElement("li");
+            li.setAttribute("id", "testLi");
+            li.setAttribute("onclick", "execBookmarklet");
+            let inputValue = document.getElementById("myBookmarkletName").value;
+            let textAreaInputValue = document.getElementById("myBookmarkletCode").value;
+            let t = document.createTextNode(inputValue);
+            let c = document.createTextNode(textAreaInputValue);
+            li.appendChild(t);
+            li.appendChild(c);
+            if (inputValue === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("bookmarkletList").appendChild(li);
+            }
+            document.getElementById("myBookmarkletName").value = "";
+
+        }
+
+        function execBookmarklet() {
+            console.log("Hello");
+        }
+
+</script>
+</body>
+</html>
