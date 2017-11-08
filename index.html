@@ -63,7 +63,7 @@
 <div id="header">
     <h2>Place bookmarklet code here:</h2>
         <p>bookmarklet Name</p>
-        <input type="text" id="myBookmarkletName" name="bookmarklet" maxlength="3000" rows="10" cols="50">
+        <input type="text" id="myBookmarkletName" name="bookmarklet">
         <br>
         <p>Place bookmarklet code here:</p>
         <textarea type="text" id="myBookmarkletCode" name="bookmarklet" maxlength="3000" rows="10" cols="50"></textarea>
@@ -80,15 +80,17 @@
 
     let ul = document.getElementById('bookmarkletList');
 
-    ul.addEventListener('click', function(e) {
-        if (e.target.tagName === 'LI'){
-            alert(e.target.innerHTML);
+    ul.addEventListener('click', function(event) {
+        if (event.target.tagName === 'LI'){
+            alert(event.target.innerHTML);
         }
     });
 
     document.getElementById('createBookmarklet').addEventListener("click", createBookmarklet);
 
     function createBookmarklet() {
+
+            //Todo:: Maybe use form tag to build
             let li = document.createElement("li");
             li.setAttribute("id", "testLi");
             li.setAttribute("onclick", "execBookmarklet");
@@ -98,18 +100,18 @@
             let c = document.createTextNode(textAreaInputValue);
             li.appendChild(t);
             li.appendChild(c);
+            //Todo:: Make a validator function
             if (inputValue === '') {
                 alert("You must write something!");
             } else {
                 document.getElementById("bookmarkletList").appendChild(li);
             }
+            //TODO:: Make a clear function
             document.getElementById("myBookmarkletName").value = "";
+            document.getElementById("myBookmarkletCode").value = "";
 
         }
 
-        function execBookmarklet() {
-            console.log("Hello");
-        }
 
 </script>
 </body>
