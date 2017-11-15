@@ -42,15 +42,15 @@
             background: #ddd;
         }
 
-        #createBookmarklet {
+        .createBookmarklet {
             margin: 10px 90px ;
         }
 
-        #myBookmarkletName {
+        .myBookmarkletName {
             width: 300px;
         }
 
-        #myBookmarkletCode {
+        .myBookmarkletCode {
             margin-top: 10px;
             width: 300px;
         }
@@ -63,54 +63,21 @@
 <div id="header">
     <h2>Place bookmarklet code here:</h2>
         <p>bookmarklet Name</p>
-        <input type="text" id="myBookmarkletName" name="bookmarklet">
+        <input type="text" class="myBookmarkletName" name="bookmarklet">
         <br>
         <p>Place bookmarklet code here:</p>
-        <textarea type="text" id="myBookmarkletCode" name="bookmarklet" maxlength="3000" rows="10" cols="50"></textarea>
+        <textarea type="text" class="myBookmarkletCode" name="bookmarklet" maxlength="3000" rows="10" cols="50"></textarea>
         <br>
-        <button id="createBookmarklet" >
+        <button class="createBookmarklet" >
             Create bookmarklet
         </button>
-        <ul id="bookmarkletList"></ul>
+        <ul class="bookmarkletList"></ul>
 
 </div>
 
 
 <script>
 
-    let ul = document.getElementById('bookmarkletList');
-
-    ul.addEventListener('click', function(event) {
-        if (event.target.tagName === 'LI'){
-            alert(event.target.innerHTML);
-        }
-    });
-
-    document.getElementById('createBookmarklet').addEventListener("click", createBookmarklet);
-
-    function createBookmarklet() {
-
-            //Todo:: Maybe use form tag to build
-            let li = document.createElement("li");
-            li.setAttribute("id", "testLi");
-            li.setAttribute("onclick", "execBookmarklet");
-            let inputValue = document.getElementById("myBookmarkletName").value;
-            let textAreaInputValue = document.getElementById("myBookmarkletCode").value;
-            let t = document.createTextNode(inputValue);
-            let c = document.createTextNode(textAreaInputValue);
-            li.appendChild(t);
-            li.appendChild(c);
-            //Todo:: Make a validator function
-            if (inputValue === '') {
-                alert("You must write something!");
-            } else {
-                document.getElementById("bookmarkletList").appendChild(li);
-            }
-            //TODO:: Make a clear function
-            document.getElementById("myBookmarkletName").value = "";
-            document.getElementById("myBookmarkletCode").value = "";
-
-        }
 
 
 </script>
