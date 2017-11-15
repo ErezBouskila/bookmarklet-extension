@@ -1,5 +1,5 @@
 window.onload = () => {
-    let ul = document.getElementById('bookmarkletList');
+    let ul = document.querySelector('.bookmarkletList');
 
     ul.addEventListener('click', function(event) {
         if (event.target.tagName === 'LI'){
@@ -7,7 +7,7 @@ window.onload = () => {
         }
     });
 
-    document.getElementById('createBookmarklet').addEventListener("click", createBookmarklet);
+    document.querySelector('.createBookmarklet').addEventListener("click", createBookmarklet);
 };
 
 createBookmarklet = () => {
@@ -15,10 +15,9 @@ createBookmarklet = () => {
     //Todo:: Maybe use form tag to build
     let li = document.createElement("li");
 
-    let inputValue = document.getElementById("myBookmarkletName").value;
-    let textAreaInputValue = document.getElementById("myBookmarkletCode").value;
+    let inputValue = document.querySelector(".myBookmarkletName").value;
+    let textAreaInputValue = document.querySelector(".myBookmarkletCode").value;
     let t = document.createTextNode(inputValue);
-    let c = document.createTextNode(textAreaInputValue);
     li.setAttribute("id", "testLi");
     li.setAttribute("data-code", textAreaInputValue);
     li.appendChild(t);
@@ -26,10 +25,10 @@ createBookmarklet = () => {
     if (inputValue === '') {
         alert("You must write something!");
     } else {
-        document.getElementById("bookmarkletList").appendChild(li);
+        document.querySelector(".bookmarkletList").appendChild(li);
     }
     //TODO:: Make a clear function
-    document.getElementById("myBookmarkletName").value = "";
-    document.getElementById("myBookmarkletCode").value = "";
+    document.querySelector(".myBookmarkletName").value = "";
+    document.querySelector(".myBookmarkletCode").value = "";
 
 };
