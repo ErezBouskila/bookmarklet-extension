@@ -3,7 +3,7 @@ window.onload = () => {
 
     ul.addEventListener('click', function(event) {
         if (event.target.tagName === 'LI'){
-            alert(event.target.innerHTML);
+            eval(event.target.getAttribute("data-code"));
         }
     });
 
@@ -31,4 +31,10 @@ createBookmarklet = () => {
     document.querySelector(".myBookmarkletName").value = "";
     document.querySelector(".myBookmarkletCode").value = "";
 
+};
+
+generate = (el, list) => {
+    el.innerHTML = list.reduce((acc, curr) => {
+        return `${acc}<li data-code="${textAreaInputValue}" >${curr.name}</li>`
+    }, '');
 };
